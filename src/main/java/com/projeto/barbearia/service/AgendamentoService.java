@@ -21,7 +21,6 @@ public class AgendamentoService {
     private AgendamentoDAO repository;
     
    public void inserirAgendamento(AgendamentoBean agendamento){
-       
             repository.inserirAgendamento(agendamento);
        }
    
