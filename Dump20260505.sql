@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `barbearia_db` /*!40100 DEFAULT CHARACTER SET utf
 USE `barbearia_db`;
 -- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: barbearia_db
+-- Host: localhost    Database: barbearia_db
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.32-MariaDB
 
@@ -18,61 +18,29 @@ USE `barbearia_db`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `agendamento`
+-- Table structure for table `usuarios`
 --
 
-DROP TABLE IF EXISTS `agendamento`;
+DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `agendamento` (
-  `id_agendamento` int(11) NOT NULL AUTO_INCREMENT,
-  `data_agendamento` date NOT NULL,
-  `id_barbeiro` int(11) NOT NULL,
-  PRIMARY KEY (`id_agendamento`),
-  KEY `id_barbeiro` (`id_barbeiro`),
-  CONSTRAINT `agendamento_ibfk_1` FOREIGN KEY (`id_barbeiro`) REFERENCES `barbeiros` (`id_barbeiro`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `agendamento`
---
-
-LOCK TABLES `agendamento` WRITE;
-/*!40000 ALTER TABLE `agendamento` DISABLE KEYS */;
-INSERT INTO `agendamento` VALUES (1,'2026-05-10',1),(2,'2026-05-11',2),(3,'2026-10-25',2),(4,'2026-10-25',2);
-/*!40000 ALTER TABLE `agendamento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `barbeiros`
---
-
-DROP TABLE IF EXISTS `barbeiros`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `barbeiros` (
-  `id_barbeiro` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
   `nome` varchar(60) NOT NULL,
-  `telefone` int(11) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  PRIMARY KEY (`id_barbeiro`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `barbeiros`
+-- Dumping data for table `usuarios`
 --
 
-LOCK TABLES `barbeiros` WRITE;
-/*!40000 ALTER TABLE `barbeiros` DISABLE KEYS */;
-INSERT INTO `barbeiros` VALUES (1,'João Silva',2147483647,'joao.silva@email.com'),(2,'Carlos Souza',2147483647,'carlos.souza@email.com');
-/*!40000 ALTER TABLE `barbeiros` ENABLE KEYS */;
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'barbearia_db'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -83,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-05 17:36:08
+-- Dump completed on 2026-05-06 17:37:23
