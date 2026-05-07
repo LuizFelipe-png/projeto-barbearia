@@ -24,7 +24,7 @@ public class AgendamentoDAO {
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
-            stmt = conn.prepareStatement("INSERT INTO agendamento (data_agendamento, id_barbeiro) VALUES (?,?)");
+            stmt = conn.prepareStatement("INSERT INTO agendamento (data_agendamento, id_barbeiro_agendamento) VALUES (?,?)");
             stmt.setDate(1, agendamento.getData_agendamento());
             stmt.setInt(2, agendamento.getId_barbeiro_agendamento());
             

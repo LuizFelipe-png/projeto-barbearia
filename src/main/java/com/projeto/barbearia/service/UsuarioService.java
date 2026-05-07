@@ -8,6 +8,7 @@ import com.projeto.barbearia.Repository.UsuarioDAO;
 import com.projeto.barbearia.model.UsuarioBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import static tools.jackson.databind.cfg.CoercionInputShape.String;
 
 /**
  *
@@ -23,7 +24,8 @@ public class UsuarioService {
         repository.cadastrar(usuario);
        }
     
-    public UsuarioBean login (UsuarioBean usuario){
-        return repository.login(usuario); 
+    public UsuarioBean login (String email, String senha){
+        return repository.login(email, senha); 
     }
 }
+

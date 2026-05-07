@@ -24,7 +24,7 @@ public class UsuarioDAO {
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
-            stmt = conn.prepareStatement("INSERT INTO usuarios (nome, email, senha) VALUES (?,?,?)");
+            stmt = conn.prepareStatement("INSERT INTO usuario (nome, email, senha) VALUES (?,?,?)");
             stmt.setString(1, cadastro.getNome());
             stmt.setString(2, cadastro.getEmail());
             stmt.setString(3, cadastro.getSenha());
@@ -36,26 +36,26 @@ public class UsuarioDAO {
         }
     }
     
-    public UsuarioBean login(UsuarioBean login){
+    public UsuarioBean login(String email, String senha){
+        UsuarioBean usuario = new UsuarioBean();
         try{
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conn.prepareStatement("SELECT nome, email, senha FROM usuarios WHERE id = ?");
+            stmt = conn.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
             
             rs = stmt.executeQuery();
             
             if(rs.next()){
-            UsuarioBean bean = new UsuarioBean();
-            login.setNome(rs.getString("nome"));
-            login.setEmail(rs.getString("email"));
-            login.setSenha(rs.getString("senha"));
-            
+            usuario.setNome(rs.getString("nome"));
+            usuario.setEmail(rs.getString("email"));            
             }
         } catch(SQLException e){
             e.printStackTrace();
         }
-        return login;
+        return usuario;
     }
 }

@@ -5,31 +5,41 @@
 package com.projeto.barbearia.controller;
 
 import com.projeto.barbearia.model.UsuarioBean;
+import com.projeto.barbearia.service.TokenService;
 import com.projeto.barbearia.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author Aluno
  */
-@RequestMapping("/api/usuarios")
+@RestController
+@RequestMapping("/api")
 public class UsuarioController {
     
     @Autowired
     private UsuarioService service;
     
-    @PostMapping
-    public String Cadastrar(@RequestBody UsuarioBean usuario){
+    @Autowired
+    private TokenService tokenservice;
+
+    @PostMapping("/cadastrar")
+    public String cadastrar(@RequestBody UsuarioBean usuario){
         service.cadastrar(usuario);
-        return "sucesso!";
+        return "usuario cadastrado com sucesso!";
     }
     
-    @GetMapping
-    public UsuarioBean login (@RequestBody UsuarioBean usuario){
-        return service.login(usuario);
+    @PostMapping("/login")
+    public String login (@RequestBody UsuarioBean bean){
+        UsuarioBean usuario = service.login(bean.getEmail(), bean.getSenha());
+        if(usuario.getEmail() != null){
+            return tokenservice.gerarToken(usuario.getEmail());
+        } else {
+            return "Login inválido!";
+        }
     }
 }

@@ -45,6 +45,6 @@ public class UsuarioBean {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     
 }
